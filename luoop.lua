@@ -57,7 +57,7 @@ end
 -- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
 function callConstructor(obj, oSuperclass, ...)
    assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-   assert(obj.__parents, 'initSuperclassRem expects the obj to have parents')
+   assert(obj.__parents, 'callConstructor expects the obj to have parents')
 
    if oSuperclass.init then
       oSuperclass.init(obj, ...)
@@ -67,7 +67,7 @@ end
 -- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
 function callDestructor(obj, oSuperclass, ...)
    assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-   assert(obj.__parents, 'initSuperclassRem expects the obj to have parents')
+   assert(obj.__parents, 'callDestructor expects the obj to have parents')
 
    if oSuperclass.destroy then
       oSuperclass.destroy(obj, ...)

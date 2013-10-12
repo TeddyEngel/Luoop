@@ -33,7 +33,6 @@ The project's code can be dowloaded from its [GitHub page][gh].
 See Also
 --------
 
-* The project's [UserVoice page][uv] for bugs & feature requests.
 * The project's [GitHub page][gh]
 * ObjectOrientedProgramming
 

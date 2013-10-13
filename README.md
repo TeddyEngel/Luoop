@@ -29,6 +29,7 @@ Code
 ----
 
 The project's code can be dowloaded from its [GitHub page][gh].
+If you feel like contributing / reporting a bug, please get in touch: engel.teddy[at]gmail.com.
 
 See Also
 --------

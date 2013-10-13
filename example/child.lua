@@ -46,5 +46,3 @@ end
 function Child:toString()
 	return 'I am a child'
 end
-
-

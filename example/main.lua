@@ -25,9 +25,7 @@ print (oChild:toString()) -- Will print 'I am a child'
 print (oChild:_getId()) -- Will print 5
 print (oChild:_getHappy()) -- The child made the mother class happy :)
 
--- Making a reddish unhappy child :()
-oChild:_setColor('red')
-oChild:_setHappy(false)
-print (oChild:_getColor()) -- Will print 'Red'
-print (oChild:_getHappy()) -- Will print false
+-- Making a yellow child
+oChild:_setColor('yellow')
+print (oChild:_getColor()) -- Will print 'yellow'
 

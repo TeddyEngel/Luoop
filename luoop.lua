@@ -36,7 +36,7 @@ local function _createSuperclass(c, oSuperclass)
    -- We copy all methods / variables from the superclass to the current class
    for sMethodName, oMethod in pairs(oSuperclass) do
       -- Exceptions for internally used variables
-      if sMethodName ~= '__parents' 
+      if sMethodName ~= '__parents'
          and sMethodName ~= '__index' then
          c[sMethodName] = oMethod
       end
@@ -70,7 +70,7 @@ function class(init, ...)
       setmetatable(obj,c)
 
       -- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
-      function obj:_parentConstructor(oSuperclass, ...)
+      obj._parentConstructor = function(obj, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
          assert(obj.__parents, 'callConstructor expects the obj to have parents')
 
@@ -80,9 +80,9 @@ function class(init, ...)
       end
 
       -- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
-      function obj:_parentDestructor(oSuperclass, ...)
+      obj._parentDestructor = function (obj, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(obj.__parents, 'callDestructor expects the obj to have parents')
+         assert(obj.__parents, 'self:_parentDestructor( expects the obj to have parents')
 
          if oSuperclass.destroy then
             oSuperclass.destroy(obj, ...)

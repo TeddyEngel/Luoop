@@ -72,7 +72,7 @@ function class(init, ...)
       -- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
       obj._parentConstructor = function(obj, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(obj.__parents, 'callConstructor expects the obj to have parents')
+         assert(obj.__parents, '_parentConstructor expects the obj to have parents')
 
          if oSuperclass.init then
             oSuperclass.init(obj, ...)
@@ -82,7 +82,7 @@ function class(init, ...)
       -- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
       obj._parentDestructor = function (obj, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(obj.__parents, 'self:_parentDestructor( expects the obj to have parents')
+         assert(obj.__parents, '_parentDestructor( expects the obj to have parents')
 
          if oSuperclass.destroy then
             oSuperclass.destroy(obj, ...)

@@ -1,16 +1,13 @@
 -----
 -- Luoop - easy and flexible object oriented library for Lua
 -- Author: Teddy Engel <engel.teddy[at]gmail.com> / @Teddy_Engel
--- Version: 1.0
+-- Version: 1.01
 --
 -- This is an implementation of a object-oriented Lua module, coded entirely in Lua.
 -- It is meant to be simple and flexile, since the main initial requirement was multiple inheritance and overloading + the ability
 -- to call constructors / destructors with custom parameters.
 --
--- Licensing:
-
--- The MIT License (MIT)
-
+-- MIT License (MIT)
 -- Copyright (c) 2013 Teddy Engel
 
 -- Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -52,28 +49,6 @@ local function _createSuperclass(c, oSuperclass)
    c.__parents[oSuperclass] = oSuperclass
 end
 
---- PROTECTED FUNCTIONS ---
-
--- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
-function callConstructor(obj, oSuperclass, ...)
-   assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-   assert(obj.__parents, 'callConstructor expects the obj to have parents')
-
-   if oSuperclass.init then
-      oSuperclass.init(obj, ...)
-   end
-end
-
--- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
-function callDestructor(obj, oSuperclass, ...)
-   assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-   assert(obj.__parents, 'callDestructor expects the obj to have parents')
-
-   if oSuperclass.destroy then
-      oSuperclass.destroy(obj, ...)
-   end
-end
-
 --- MAIN CALL ---
 function class(init, ...)
    local oSuperClasses = {...}
@@ -93,6 +68,26 @@ function class(init, ...)
    mt.__call = function(class_tbl, ...)
       local obj = {}
       setmetatable(obj,c)
+
+      -- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
+      function obj:_parentConstructor(oSuperclass, ...)
+         assert(type(oSuperclass) == 'table', 'expects a valid superclass')
+         assert(obj.__parents, 'callConstructor expects the obj to have parents')
+
+         if oSuperclass.init then
+            oSuperclass.init(obj, ...)
+         end
+      end
+
+      -- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
+      function obj:_parentDestructor(oSuperclass, ...)
+         assert(type(oSuperclass) == 'table', 'expects a valid superclass')
+         assert(obj.__parents, 'callDestructor expects the obj to have parents')
+
+         if oSuperclass.destroy then
+            oSuperclass.destroy(obj, ...)
+         end
+      end
 
       -- Then the child constructor
       if init then

@@ -10,8 +10,8 @@ require ("mother") -- parent class
 -- Constructor
 local function new(self, sColor)
 	-- Always call the parent constructor first
-	callConstructor(self, Father, 5)
-	callConstructor(self, Mother, true)
+	self:_parentConstructor(Father, 5)
+	self:_parentConstructor(Mother, true)
 
 	-- Assigning a color
 	self:_setColor(sColor)
@@ -25,8 +25,8 @@ function Child:destroy()
 	self:_setColor(nil)
 
 	-- Always call the destructors last
-	callDestructor(self, Mother, false)
-	callDestructor(self, Father)
+	self:_parentDestructor(Mother, false)
+	self:_parentDestructor(Father)
 end
 
 -- Getters / Setters

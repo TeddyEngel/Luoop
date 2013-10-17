@@ -29,78 +29,78 @@
 --
 
 --- PRIVATE FUNCTIONS ---
-local function _createSuperclass(c, oSuperclass)
+local function _createSuperclass(oClassDefinition, oSuperclass)
    assert(type(oSuperclass) == 'table', '_createSuperclass expects a valid superclass')
    assert(oSuperclass.init, '_createSuperclass expects a superclass with a constructor defined')
    
    -- We copy all methods / variables from the superclass to the current class
    for sMethodName, oMethod in pairs(oSuperclass) do
       -- Exceptions for internally used variables
-      if sMethodName ~= '__parents'
+      if sMethodName ~= '__aParents'
          and sMethodName ~= '__index' then
-         c[sMethodName] = oMethod
+         oClassDefinition[sMethodName] = oMethod
       end
    end
 
    -- Adds the superclass as a base class
-   if c.__parents == nil then
-      c.__parents = {}
+   if oClassDefinition.__aParents == nil then
+      oClassDefinition.__aParents = {}
    end
-   c.__parents[oSuperclass] = oSuperclass
+   oClassDefinition.__aParents[oSuperclass] = oSuperclass
 end
 
 --- MAIN CALL ---
 function class(init, ...)
    local oSuperClasses = {...}
-   local c = {}    -- a new class instance
+   local oClassDefinition = {}    -- a new class instance
 
    -- Array to store the superclasses
-   c.__parents = nil
+   oClassDefinition.__aParents = nil
    
    -- Creating all superclasses
-   for oKey, oSuperClass in pairs(oSuperClasses) do _createSuperclass(c, oSuperClass) end
+   for oKey, oSuperClass in pairs(oSuperClasses) do _createSuperclass(oClassDefinition, oSuperClass) end
    
-   c.__index = c
+   oClassDefinition.__index = oClassDefinition
 
    -- Exposes a constructor which can be called by classname(<args>)
    local mt = {}
 
    mt.__call = function(class_tbl, ...)
-      local obj = {}
-      setmetatable(obj,c)
+      local oObject = {}
+      setmetatable(oObject, oClassDefinition)
 
       -- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
-      obj._parentConstructor = function(obj, oSuperclass, ...)
+      oObject._parentConstructor = function(oObject, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(obj.__parents, '_parentConstructor expects the obj to have parents')
+         assert(oObject.__aParents, '_parentConstructor expects the object to have parents')
 
          if oSuperclass.init then
-            oSuperclass.init(obj, ...)
+            oSuperclass.init(oObject, ...)
          end
       end
 
       -- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
-      obj._parentDestructor = function (obj, oSuperclass, ...)
+      oObject._parentDestructor = function (oObject, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(obj.__parents, '_parentDestructor( expects the obj to have parents')
+         assert(oObject.__aParents, '_parentDestructor( expects the object to have parents')
 
          if oSuperclass.destroy then
-            oSuperclass.destroy(obj, ...)
+            oSuperclass.destroy(oObject, ...)
          end
       end
 
       -- Then the child constructor
       if init then
-         init(obj, ...)
+         init(oObject, ...)
       end 
       
-      return obj
+      return oObject
    end
    
-   c.init = init
+   oClassDefinition.init = init
    -- We expose the constructor with the method new() to allow instantiating from an existing object
-   c.new = mt.__call
+   oClassDefinition.new = mt.__call
 
-   setmetatable(c, mt)
-   return c
+   setmetatable(oClassDefinition, mt)
+   return oClassDefinition
 end

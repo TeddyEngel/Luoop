@@ -3,11 +3,10 @@ Luoop
 
 A lightweight and flexible object oriented library for Lua.
 
-This is an implementation of a object-oriented Lua module, coded entirely in Lua.
-It is meant to be simple and flexible, since the main requirement was to handle multiple inheritance and overloading + the ability
-to call constructors / destructors with custom parameters.
+This is an implementation of an object-oriented module, coded entirely in Lua.
+It is meant to be simple and flexible, and the main features are multiple inheritance, overloading and custom contructor / destructor calling.
 
-If you feel like contributing / reporting a bug, please get in touch: engel.teddy[at]gmail.com or on twitter: @Teddy_Engel
+If you feel like contributing / reporting a bug, please get in touch: engel.teddy[at]gmail.com 
 
 Features
 --------
@@ -30,13 +29,16 @@ Warnings
 Code
 ----
 
-The project's code can be dowloaded from its [GitHub page][gh].
+The source code can be downloaded from the [GitHub page][gh].
 
 See Also
 --------
 
-* The project's [GitHub page][gh]
-* ObjectOrientedProgramming
+* The [GitHub page][gh]
+* [Object oriented programming][oop]
+* [@Teddy_Engel][tw]
 
 [gh]: https://github.com/TeddyEngel/Luoop
+[oop]:http://en.wikipedia.org/wiki/Object-oriented_programming
+[tw]: https://twitter.com/Teddy_Engel
 

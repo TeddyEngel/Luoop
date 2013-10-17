@@ -3,7 +3,7 @@
 -- main.lua
 --
 -----------------------------------------------------------------------------------------
-require ("luoop") -- class system
+require ("luoop")
 
 require ("father")
 require ("mother")

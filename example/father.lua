@@ -3,23 +3,23 @@
 -- Father.lua
 --
 -----------------------------------------------------------------------------------------
-require ("luoop") -- class system
+require ("luoop")
 
--- Constructor
+--- Constructor ---
 local function new(self, nId)
 	-- Assigning an id
 	self:_setId(nId)
 end
 
--- Class definition
+--- Class Definition ---
 Father = class(new)
 
--- Destructor
+--- Destructor ---
 function Father:destroy()
 	self:_setId(nil)
 end
 
--- Getters / Setters
+--- Getters / Setters ---
 function Father:_getId()
 	return self._nId
 end

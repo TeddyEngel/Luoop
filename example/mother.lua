@@ -3,15 +3,14 @@
 -- Mother.lua
 --
 -----------------------------------------------------------------------------------------
-require ("luoop") -- class system
+require ("luoop")
 
--- Constructor
+--- Constructor ---
 local function new(self, bHappy)
-	-- Making the mom happy
 	self:_setHappy(bHappy)
 end
 
--- Class definition
+--- Class Definition ---
 Mother = class(new)
 
 -- Destructor
@@ -19,7 +18,7 @@ function Mother:destroy(bHappy)
 	self:_setHappy(bHappy)
 end
 
--- Getters / Setters
+--- Getters / Setters ---
 function Mother:_getHappy()
 	return self._bHappy
 end

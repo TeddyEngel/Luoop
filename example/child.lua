@@ -3,11 +3,11 @@
 -- Child.lua
 --
 -----------------------------------------------------------------------------------------
-require ("luoop") -- class system
+require ("luoop")
 require ("father") -- parent class
 require ("mother") -- parent class
 
--- Constructor
+--- Constructor ---
 local function new(self, sColor)
 	-- Always call the parent constructor first
 	self:_parentConstructor(Father, 5)
@@ -17,10 +17,10 @@ local function new(self, sColor)
 	self:_setColor(sColor)
 end
 
--- Class definition
+--- Class Definition ---
 Child = class(new, Father, Mother)
 
--- Destructor
+--- Destructor ---
 function Child:destroy()
 	self:_setColor(nil)
 
@@ -29,7 +29,7 @@ function Child:destroy()
 	self:_parentDestructor(Father)
 end
 
--- Getters / Setters
+--- Getters / Setters ---
 function Child:_getColor()
 	return self._sColor
 end

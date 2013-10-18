@@ -15,7 +15,7 @@ Features
 * Constructors / destructors
 * Multiple inheritance
 * Overloading
-* new() method, to get a new instance of an existing object
+* newInstance() method, to get a new instance of an existing object
 * Ad-hoc constructor / destructor calling, allowing to pass specific parameters to each superclass constructor / destructor
 * Consistent use of `:` recommended.
 

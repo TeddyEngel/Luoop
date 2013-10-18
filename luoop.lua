@@ -1,7 +1,7 @@
 -----
 -- Luoop - easy and flexible object oriented library for Lua
 -- Author: Teddy Engel <engel.teddy[at]gmail.com> / @Teddy_Engel
--- Version: 1.02
+-- Version: 1.03
 --
 -- This is an implementation of a object-oriented Lua module, coded entirely in Lua.
 -- It is meant to be simple and flexile, since the main initial requirement was multiple inheritance and overloading + the ability
@@ -74,10 +74,15 @@ function class(init, ...)
       local oObject = {}
       setmetatable(oObject, oClassDefinition)
 
+      -- Use this function to know if the class has the passed class has a parent
+      oObject._hasParentClass = function(oObject, oSuperclass)
+         return oObject.__aAllParents[oSuperclass] ~= nil
+      end
+
       -- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
       oObject._parentConstructor = function(oObject, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(oObject.__aAllParents[oSuperclass], '_parentConstructor passed super class must be valid')
+         assert(oObject._hasParentClass(oObject, oSuperclass) == true, '_parentConstructor passed super class must be valid')
 
          if oSuperclass.init then
             oSuperclass.init(oObject, ...)
@@ -87,7 +92,7 @@ function class(init, ...)
       -- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
       oObject._parentDestructor = function (oObject, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(oObject.__aAllParents[oSuperclass], '_parentConstructor passed super class must be valid')
+         assert(oObject._hasParentClass(oObject, oSuperclass) == true, '_parentConstructor passed super class must be valid')
 
          if oSuperclass.destroy then
             oSuperclass.destroy(oObject, ...)

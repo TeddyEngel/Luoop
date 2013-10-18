@@ -1,7 +1,7 @@
 -----
 -- Luoop - easy and flexible object oriented library for Lua
 -- Author: Teddy Engel <engel.teddy[at]gmail.com> / @Teddy_Engel
--- Version: 1.01
+-- Version: 1.02
 --
 -- This is an implementation of a object-oriented Lua module, coded entirely in Lua.
 -- It is meant to be simple and flexile, since the main initial requirement was multiple inheritance and overloading + the ability

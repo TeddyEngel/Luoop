@@ -14,10 +14,12 @@ Features
 * Object oriented
 * Constructors / destructors
 * Multiple inheritance
-* Overloading
+* Method Overloading
 * newInstance() method, to get a new instance of an existing object
 * Ad-hoc constructor / destructor calling, allowing to pass specific parameters to each superclass constructor / destructor
-* Consistent use of `:` recommended.
+* Superclass method calling
+* Embedded Singleton support
+* Consistent use of `:` recommended
 
 Note: Please check the `example` folder in the package to see how to use the library.
 

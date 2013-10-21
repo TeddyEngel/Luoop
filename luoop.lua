@@ -80,6 +80,14 @@ function class(init, ...)
          return oObject.__aAllParents[oSuperclass] ~= nil
       end
 
+      -- Use this method to call a parent's method if implemented
+      oObject._parentMethod = function(oObject, oSuperclass, sMethodName, ...)
+         assert(type(oSuperclass) == 'table', 'expects a valid superclass')
+         assert(oObject._hasParentClass(oObject, oSuperclass) == true, '_parentConstructor passed super class must be valid')
+         assert(oSuperclass[sMethodName] ~= nil, '_parentMethod passed super class must implement the method')
+         return oSuperclass[sMethodName](oObject, ...)
+      end
+
       -- Use this function to call the constructor on specific object you created, passing the superclass and variable parameters
       oObject._parentConstructor = function(oObject, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')

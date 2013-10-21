@@ -1,7 +1,7 @@
 -----
 -- Luoop - easy and flexible object oriented library for Lua
 -- Author: Teddy Engel <engel.teddy[at]gmail.com> / @Teddy_Engel
--- Version: 1.03
+-- Version: 1.04
 --
 -- This is an implementation of a object-oriented Lua module, coded entirely in Lua.
 -- It is meant to be simple and flexile, since the main initial requirement was multiple inheritance and overloading + the ability
@@ -38,7 +38,9 @@ local function _createSuperclass(oClassDefinition, oSuperclass)
       -- Exceptions for internally used variables
       if sMethodName ~= '__aParents'
          and sMethodName ~= '__aAllParents'
-         and sMethodName ~= '__index' then
+         and sMethodName ~= '__index' 
+         and sMethodName ~= 'getSingleton' 
+         and sMethodName ~= 'resetSingleton' then
          oClassDefinition[sMethodName] = oMethod
       end
    end
@@ -57,6 +59,8 @@ function class(init, ...)
    local oSuperClasses = {...}
    local oClassDefinition = {}    -- a new class instance
 
+   -- Parameter to say if the class is a singleton or not
+   oClassDefinition._bSingleton = false
    -- Array to store the superclasses directly above this one
    oClassDefinition.__aParents = {}
    -- Array to store the full hierarchy of superclasses
@@ -67,10 +71,7 @@ function class(init, ...)
    
    oClassDefinition.__index = oClassDefinition
 
-   -- Exposes a constructor which can be called by classname(<args>)
-   local mt = {}
-
-   mt.__call = function(class_tbl, ...)
+   local function __createNewObject(...)
       local oObject = {}
       setmetatable(oObject, oClassDefinition)
 
@@ -102,11 +103,35 @@ function class(init, ...)
       -- Then the child constructor
       if init then
          init(oObject, ...)
-      end 
-      
+      end
+      return oObject
+   end
+
+   -- Exposes a constructor which can be called by classname(<args>)
+   local mt = {}
+
+   mt.__call = function(class_tbl, ...)
+      local oObject = nil
+      if oClassDefinition._bSingleton == false then 
+         oObject = __createNewObject(...)
+      end
       return oObject
    end
    
+   -- Singleton handling
+   local oSingleton = nil
+   oClassDefinition.getSingleton = function(...)
+      if oClassDefinition._bSingleton == true and oSingleton == nil then 
+         oSingleton = __createNewObject(...)
+      end
+      return oSingleton
+   end
+   oClassDefinition.resetSingleton = function()
+      if oSingleton ~= nil then
+         oSingleton = nil
+      end
+   end
+
    oClassDefinition.init = init
    -- We expose the constructor with the method new() to allow instantiating from an existing object
    oClassDefinition.newInstance = mt.__call

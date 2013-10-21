@@ -8,6 +8,7 @@ require ("luoop")
 require ("father")
 require ("mother")
 require ("child")
+require ("bird")
 
 -- Instantiating all objects
 local oFather = Father(1) -- Giving father an id of 1
@@ -29,3 +30,10 @@ print (oChild:_getHappy()) -- The child made the mother class happy :)
 oChild:_setColor('yellow')
 print (oChild:_getColor()) -- Will print 'yellow'
 
+-- Creating a singleton bird
+local oBird = Bird.getSingleton() -- Getting a singleton
+local oSameBird = Bird.getSingleton() -- Getting the same singleton
+
+Bird.resetSingleton() -- Reseting the singleton (so that the next getSingleton yields a new instance)
+oSameBird = nil
+oBird = nil

@@ -1,38 +1,29 @@
 -----------------------------------------------------------------------------------------
 --
--- Father.lua
+-- Bird.lua
 --
 -----------------------------------------------------------------------------------------
 require ("luoop")
 
 --- Constructor ---
-local function new(self, nId)
-	-- Assigning an id
-	self:_setId(nId)
+local function new(self)
 end
 
 --- Class Definition ---
-Father = class(new)
+Bird = class(new)
+Bird._bSingleton = true
 
 --- Destructor ---
-function Father:destroy()
-	self:_setId(nil)
+function Bird:destroy()
 end
 
 --- Getters / Setters ---
-function Father:_getId()
-	return self._nId
-end
-
-function Father:_setId(nId)
-	self._nId = nId
-end
 
 -- Other methods
-function Father:type()
-	return 'Father'
+function Bird:type()
+    return 'Bird'
 end
 
-function Father:toString()
-	return 'I am the dad'
+function Bird:toString()
+    return 'I am the singleton bird'
 end

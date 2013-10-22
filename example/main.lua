@@ -31,9 +31,9 @@ oChild:_setColor('yellow')
 print (oChild:_getColor()) -- Will print 'yellow'
 
 -- Creating a singleton bird
-local oBird = Bird.getSingleton() -- Getting a singleton
-local oSameBird = Bird.getSingleton() -- Getting the same singleton
+local oBird = Bird.newSingleton() -- Getting a singleton
+local oSameBird = Bird.newSingleton() -- Getting the same singleton
 
-Bird.resetSingleton() -- Reseting the singleton (so that the next getSingleton yields a new instance)
+Bird.destroySingleton() -- Reseting the singleton (so that the next newSingleton yields a new instance)
 oSameBird = nil
 oBird = nil

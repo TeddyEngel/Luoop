@@ -39,8 +39,10 @@ local function _createSuperclass(oClassDefinition, oSuperclass)
       if sMethodName ~= '__aParents'
          and sMethodName ~= '__aAllParents'
          and sMethodName ~= '__index' 
-         and sMethodName ~= 'getSingleton' 
-         and sMethodName ~= 'resetSingleton' then
+         and sMethodName ~= 'enableSingleton' 
+         and sMethodName ~= 'disableSingleton' 
+         and sMethodName ~= 'newSingleton' 
+         and sMethodName ~= 'destroySingleton' then
          oClassDefinition[sMethodName] = oMethod
       end
    end
@@ -60,7 +62,7 @@ function class(init, ...)
    local oClassDefinition = {}    -- a new class instance
 
    -- Parameter to say if the class is a singleton or not
-   oClassDefinition._bSingleton = false
+   oClassDefinition.__bSingleton = false
    -- Array to store the superclasses directly above this one
    oClassDefinition.__aParents = {}
    -- Array to store the full hierarchy of superclasses
@@ -120,7 +122,7 @@ function class(init, ...)
 
    mt.__call = function(class_tbl, ...)
       local oObject = nil
-      if oClassDefinition._bSingleton == false then 
+      if oClassDefinition.__bSingleton == false then 
          oObject = __createNewObject(...)
       end
       return oObject
@@ -128,14 +130,27 @@ function class(init, ...)
    
    -- Singleton handling
    local oSingleton = nil
-   oClassDefinition.getSingleton = function(...)
-      if oClassDefinition._bSingleton == true and oSingleton == nil then 
+   oClassDefinition.enableSingleton = function(self)
+      self.__bSingleton = true
+   end
+
+   oClassDefinition.disableSingleton = function()
+      assert(oSingleton == nil, 'disableSingleton cannot be called once a singleton has be instantiated')
+      oClassDefinition.__bSingleton = false
+   end
+
+   oClassDefinition.newSingleton = function(...)
+      if oClassDefinition.__bSingleton == true and oSingleton == nil then 
          oSingleton = __createNewObject(...)
       end
       return oSingleton
    end
-   oClassDefinition.resetSingleton = function()
+
+   oClassDefinition.destroySingleton = function()
       if oSingleton ~= nil then
+         if oSingleton.destroy then
+            oSingleton:destroy()
+         end
          oSingleton = nil
       end
    end

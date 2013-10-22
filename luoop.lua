@@ -39,6 +39,7 @@ local function _createSuperclass(oClassDefinition, oSuperclass)
       if sMethodName ~= '__aParents'
          and sMethodName ~= '__aAllParents'
          and sMethodName ~= '__index' 
+         and sMethodName ~= '__bSingleton' 
          and sMethodName ~= 'enableSingleton' 
          and sMethodName ~= 'disableSingleton' 
          and sMethodName ~= 'newSingleton' 

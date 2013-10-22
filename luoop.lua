@@ -135,7 +135,7 @@ function class(init, ...)
    end
 
    oClassDefinition.disableSingleton = function()
-      assert(oSingleton == nil, 'disableSingleton cannot be called once a singleton has be instantiated')
+      assert(oSingleton == nil, 'disableSingleton cannot be called once a singleton has been instantiated')
       oClassDefinition.__bSingleton = false
    end
 

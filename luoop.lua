@@ -1,7 +1,7 @@
 -----
 -- Luoop - easy and flexible object oriented library for Lua
 -- Author: Teddy Engel <engel.teddy[at]gmail.com> / @Teddy_Engel
--- Version: 1.1
+-- Version: 1.2
 --
 -- This is an implementation of a object-oriented Lua module, coded entirely in Lua.
 -- It is meant to be simple and flexile, since the main initial requirement was multiple inheritance and overloading + the ability
@@ -40,6 +40,7 @@ local function _createSuperclass(oClassDefinition, oSuperclass)
          and sMethodName ~= '__aAllParents'
          and sMethodName ~= '__index' 
          and sMethodName ~= '__bSingleton' 
+         and sMethodName ~= 'isSingleton' 
          and sMethodName ~= 'enableSingleton' 
          and sMethodName ~= 'disableSingleton' 
          and sMethodName ~= 'newSingleton' 
@@ -131,6 +132,10 @@ function class(init, ...)
    
    -- Singleton handling
    local oSingleton = nil
+   oClassDefinition.isSingleton = function(self)
+      return oClassDefinition.__bSingleton
+   end
+
    oClassDefinition.enableSingleton = function(self)
       self.__bSingleton = true
    end
@@ -141,7 +146,7 @@ function class(init, ...)
    end
 
    oClassDefinition.newSingleton = function(...)
-      if oClassDefinition.__bSingleton == true and oSingleton == nil then 
+      if oClassDefinition:isSingleton() and oSingleton == nil then 
          oSingleton = __createNewObject(...)
       end
       return oSingleton

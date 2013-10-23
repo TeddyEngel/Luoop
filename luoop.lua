@@ -152,10 +152,10 @@ function class(init, ...)
       return oSingleton
    end
 
-   oClassDefinition.destroySingleton = function()
+   oClassDefinition.destroySingleton = function(...)
       if oSingleton ~= nil then
          if oSingleton.destroy then
-            oSingleton:destroy()
+            oSingleton:destroy(...)
          end
          oSingleton = nil
       end

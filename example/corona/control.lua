@@ -1,6 +1,8 @@
 -----------------------------------------------------------------------------------------
 --
 -- Control.lua
+-- Example of a corona parent display control class, 
+-- that you can inheritate from in your child controls
 --
 -----------------------------------------------------------------------------------------
 require ("luoop") -- class system
@@ -15,8 +17,6 @@ local function new(self, nX, nY, nWidth, nHeight, oReferencePoint)
     self._oReferencePoint = oReferencePoint
 
     -- private members
-    self._sFamily = sFamily
-    self._sId = sId
     self._oDisplayObject = nil
 end
 

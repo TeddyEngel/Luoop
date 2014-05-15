@@ -105,7 +105,7 @@ function class(init, ...)
       -- Use this function to call the destructor on specific object you created, passing the superclass and variable parameters
       oObject._parentDestructor = function (oObject, oSuperclass, ...)
          assert(type(oSuperclass) == 'table', 'expects a valid superclass')
-         assert(oObject._hasParentClass(oObject, oSuperclass) == true, '_parentConstructor passed super class must be valid')
+         assert(oObject._hasParentClass(oObject, oSuperclass) == true, '_parentDestructor passed super class must be valid')
 
          if oSuperclass.destroy then
             oSuperclass.destroy(oObject, ...)

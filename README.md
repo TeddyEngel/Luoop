@@ -38,9 +38,15 @@ See Also
 
 * The [GitHub page][gh]
 * [Object oriented programming][oop]
+
+Get in touch
+------------
+* [My Website][ws]
 * [@Teddy_Engel][tw]
 
 [gh]: https://github.com/TeddyEngel/Luoop
 [oop]:http://en.wikipedia.org/wiki/Object-oriented_programming
+
+[ws]: https://www.engelteddy.com
 [tw]: https://twitter.com/Teddy_Engel
 

@@ -47,6 +47,6 @@ Get in touch
 [gh]: https://github.com/TeddyEngel/Luoop
 [oop]:http://en.wikipedia.org/wiki/Object-oriented_programming
 
-[ws]: https://www.engelteddy.com
+[ws]: http://www.engelteddy.com
 [tw]: https://twitter.com/Teddy_Engel
 

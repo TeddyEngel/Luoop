@@ -11,7 +11,7 @@ end
 
 --- Class Definition ---
 Bird = class(new)
-Bird._bSingleton = true
+Bird:enableSingleton()
 
 --- Destructor ---
 function Bird:destroy()

@@ -28,7 +28,7 @@ function Father:_setId(nId)
 	self._nId = nId
 end
 
--- Other methods
+-- Methods
 function Father:type()
 	return 'Father'
 end

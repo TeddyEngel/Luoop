@@ -39,7 +39,6 @@ function Child:setColor(sColor)
 	self:_setColor(sColor)
 end
 
--- Overloaded methods
 function Child:type()
 	return 'Child'
 end

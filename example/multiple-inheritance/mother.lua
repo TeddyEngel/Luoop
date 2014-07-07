@@ -27,7 +27,7 @@ function Mother:_setHappy(bHappy)
 	self._bHappy = bHappy
 end
 
--- Other methods
+-- Methods
 function Mother:type()
 	return 'Mother'
 end
@@ -35,5 +35,3 @@ end
 function Mother:toString()
 	return 'I am the mom'
 end
-
-

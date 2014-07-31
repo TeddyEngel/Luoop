@@ -8,7 +8,6 @@ require ("luoop")
 require ("father")
 require ("mother")
 require ("child")
-require ("bird")
 
 -- Parent objects
 local oFather = Father(1) -- Giving father an id of 1

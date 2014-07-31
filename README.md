@@ -42,11 +42,13 @@ See Also
 Get in touch
 ------------
 * [My Website][ws]
+* [My Games][gws]
 * [@Teddy_Engel][tw]
 
 [gh]: https://github.com/TeddyEngel/Luoop
 [oop]:http://en.wikipedia.org/wiki/Object-oriented_programming
 
 [ws]: http://www.engelteddy.com
+[gws]: http://www.teddyengelgames.com
 [tw]: https://twitter.com/Teddy_Engel
 

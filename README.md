@@ -36,7 +36,8 @@ The source code can be downloaded from the [GitHub page][gh].
 See Also
 --------
 
-* The [GitHub page][gh]
+* [Luoop's GitHub page][gh]
+* [Loogine, an engine based on luoop][log]
 * [Object oriented programming][oop]
 
 Get in touch
@@ -46,6 +47,7 @@ Get in touch
 * [@Teddy_Engel][tw]
 
 [gh]: https://github.com/TeddyEngel/Luoop
+[log]: https://github.com/TeddyEngel/Loogine
 [oop]:http://en.wikipedia.org/wiki/Object-oriented_programming
 
 [ws]: http://www.engelteddy.com

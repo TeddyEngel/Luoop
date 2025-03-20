@@ -6,8 +6,6 @@ A lightweight and flexible object oriented library for Lua.
 This is an implementation of an object-oriented module, coded entirely in Lua.
 It is meant to be simple and flexible, and the main features are multiple inheritance, overloading and custom contructor / destructor calling.
 
-If you feel like contributing / reporting a bug, please get in touch: engel.teddy[at]gmail.com 
-
 Features
 --------
 
@@ -43,8 +41,6 @@ See Also
 Get in touch
 ------------
 * [My Website][ws]
-* [My Games][gws]
-* [@Teddy_Engel][tw]
 
 [gh]: https://github.com/TeddyEngel/Luoop
 [log]: https://github.com/TeddyEngel/Loogine
